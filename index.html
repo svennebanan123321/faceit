@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Welcome</title> <!-- Changed from "Checking your browser..." -->
+    <title>Welcome</title>
     <link rel="shortcut icon" href="img/Favicon.ico" type="image/x-icon">
 </head>
 
@@ -18,16 +18,9 @@
         </video>
     </div>
 
-    <div class="container" id="container">
-        <img class="gif" src="img/dots.gif" alt="Dots">
-        <h2 class="text">Loading...</h2>
-        <p class="text">Please wait a moment.</p>
-
-        <!-- Fake Cookie Image (Click to Continue) -->
-        <div class="cookie-container" id="cookie-container">
-            <img src="img/cookie.png" alt="Accept Cookies" id="cookie" onclick="showVideo()">
-            <p>Click to accept cookies and continue</p>
-        </div>
+    <!-- Fullscreen Clickable Image -->
+    <div class="clickable-image" id="clickable-image">
+        <img src="path-to-img.jpg" alt="Click to Continue" id="cookie" onclick="showVideo()">
     </div>
 </body>
 
