@@ -1,32 +1,29 @@
-/* Toggle Button to Unmute the Video */
-function toggleMute() {
-    var video = document.getElementById('video');
-    if (video.muted) {
-        video.muted = false;
-    } else {
-        video.muted = true;
-    }
-}
-
-/* Delay Function */
-function delay(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-/* Show Video Function */
+/* Show Video Function - Triggers Fullscreen & Sound on Click */
 function showVideo() {
-    var element = document.getElementById('video');
-    var button = document.getElementById('container');
-    element.style.display = 'block';
-    button.style.display = 'none';
-    delay(100).then(() => toggleMute());
+    var video = document.getElementById('video');
+    var container = document.getElementById('container');
+
+    video.style.display = 'block';
+    container.style.display = 'none';
+
+    enableAudio(); // Ensure sound plays
+    requestFullscreen();
+}
+
+/* Ensure Video Sound is Enabled */
+function enableAudio() {
+    var video = document.getElementById('video');
+
+    video.muted = false;
+    video.play().catch(() => {
+        document.addEventListener("click", enableAudio, { once: true });
+    });
 }
 
 /* Fullscreen Activation */
-const fullscreenButton = document.getElementById('button');
-const content = document.getElementById('container-video');
+function requestFullscreen() {
+    var content = document.getElementById('container-video');
 
-fullscreenButton.addEventListener('click', () => {
     if (content.requestFullscreen) {
         content.requestFullscreen();
     } else if (content.mozRequestFullScreen) { // Firefox
@@ -36,12 +33,4 @@ fullscreenButton.addEventListener('click', () => {
     } else if (content.msRequestFullscreen) { // Internet Explorer/Edge
         content.msRequestFullscreen();
     }
-});
-
-document.addEventListener('fullscreenchange', () => {
-    if (document.fullscreenElement) {
-        content.style.display = 'block';
-    } else {
-        content.style.display = 'block';
-    }
-});
+}
